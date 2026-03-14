@@ -1,0 +1,20 @@
+name: Sonar Run
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v6
+    
+      - name: Run SonarQube analysis
+        uses: SonarSource/sonarqube-scan-action@v7.0.0
+        with:
+          args: >
+            -Dsonar.projectKey=DevSecOps_Pipeline
+            -Dsonar.organization=iam-manzoor
+            -Dsonar.host.url=${{ vars.SONAR_HOST_URL }}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}

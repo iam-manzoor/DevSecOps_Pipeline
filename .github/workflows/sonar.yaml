@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v6
+
+      - name: MVN Package
+        run: mvn clean package
     
       - name: Run SonarQube analysis
         uses: SonarSource/sonarqube-scan-action@v7.0.0

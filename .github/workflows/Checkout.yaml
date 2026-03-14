@@ -1,8 +1,7 @@
 name: CodeCheckout
 
 on:
-  workflow_dispatch:
-
+  workflow_call:
 
 jobs:
   checkout:

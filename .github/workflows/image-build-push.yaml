@@ -1,7 +1,7 @@
 name: Image Build and Push
 
 on:
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
   build-and-push:

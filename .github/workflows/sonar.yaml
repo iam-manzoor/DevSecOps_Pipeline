@@ -16,7 +16,7 @@ jobs:
       - name: Run SonarQube analysis
         # uses: SonarSource/sonarqube-scan-action@v7.0.0
         run: | 
-            mvn sonar:sonar -Dsonar.projectKey=DevSecOps_Pipeline -Dsonar.organization=iam-manzoor -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            mvn sonar:sonar -Dsonar.projectKey=DevSecOps_Pipeline -Dsonar.organization=iam-manzoor -Dsonar.host.url=${{ vars.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         # with:
         #   args: >
         #     -Dsonar.projectKey=DevSecOps_Pipeline

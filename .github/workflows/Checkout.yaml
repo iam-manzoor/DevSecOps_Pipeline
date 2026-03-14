@@ -13,9 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Setup Java
+      - name: Setup Java # Set up Java environment for building the project
         uses: actions/setup-java@v3
         with:
             distribution: 'adopt'
             java-version: '17'
-            cache: maven
+      
+      - name: Cache Maven packages  # Cache Maven dependencies to speed up build times
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          
+      - name: Build with Maven # Build the project using Maven
+        run: mvn clean install

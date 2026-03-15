@@ -7,13 +7,15 @@ on:
       - main
 
 jobs: 
-  lint:
-    uses: ./.github/workflows/lint.yaml
+  
+  testing:
+    # needs: lint
+    uses: ./.github/workflows/unit_test.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
-  testing:
-    needs: lint
-    uses: ./.github/workflows/unit_test.yaml
+  lint:
+    needs: testing
+    uses: ./.github/workflows/lint.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
   sonarscan:

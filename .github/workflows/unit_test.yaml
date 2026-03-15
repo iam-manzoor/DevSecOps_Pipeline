@@ -8,8 +8,14 @@ jobs:
     runs-on: Linux
     #needs: checkout
     steps:
-      # - name: Checkout code
-      #   uses: actions/checkout@v6
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Java # Set up Java environment for building the project
+        uses: actions/setup-java@v3
+        with:
+            distribution: 'adopt'
+            java-version: '17'
 
       - name: Run unit tests # Run unit tests using Maven
         run: mvn test

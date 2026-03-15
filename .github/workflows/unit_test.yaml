@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     #needs: checkout
     steps:
-      # - name: Checkout code
-      #   uses: actions/checkout@v6
+      - name: Checkout code
+        uses: actions/checkout@v6
 
       - name: Run unit tests # Run unit tests using Maven
         run: mvn test

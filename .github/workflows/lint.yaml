@@ -16,8 +16,8 @@ jobs:
       - name: Setup Java # Set up Java environment for building the project
         uses: actions/setup-java@v3
         with:
-          java-version: 17
-          distribution: adopt
+            distribution: 'adopt'
+            java-version: '17'
 
       - name: Lint
         run: mvn clean validate

@@ -1,0 +1,27 @@
+name: CI Pipeline
+
+on:
+  workflow_dispatch:
+#   push:
+#     branches:
+#       - main
+
+jobs: 
+  checkout:
+    uses: ./.github/workflows/Checkout.yaml
+    secrets: inherit  # Inherit secrets from the calling workflow
+
+  sonar:
+    needs: checkout
+    uses: ./.github/workflows/sonar.yaml
+    secrets: inherit  # Inherit secrets from the calling workflow
+
+  testing:
+    needs: sonar
+    uses: ./.github/workflows/unit_test.yaml
+    secrets: inherit  # Inherit secrets from the calling workflow
+
+  build-and-push:
+    needs: testing
+    uses: ./.github/workflows/image-build-push.yaml
+    secrets: inherit  # Inherit secrets from the calling workflow

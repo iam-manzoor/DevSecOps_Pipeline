@@ -7,21 +7,26 @@ on:
       - main
 
 jobs: 
-  build:
-    uses: ./.github/workflows/Checkout.yaml
-    secrets: inherit  # Inherit secrets from the calling workflow
-
-  sonarscan:
-    needs: build
-    uses: ./.github/workflows/sonar.yaml
+  lint:
+    uses: ./.github/workflows/lint.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
   testing:
-    needs: sonarscan
+    needs: lint
     uses: ./.github/workflows/unit_test.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
-  image-build-and-push:
+  sonarscan:
     needs: testing
+    uses: ./.github/workflows/sonar.yaml
+    secrets: inherit  # Inherit secrets from the calling workflow
+
+  build:
+    needs: sonarscan
+    uses: ./.github/workflows/Checkout.yaml
+    secrets: inherit  # Inherit secrets from the calling workflow
+
+  image-build-and-push:
+    needs: build
     uses: ./.github/workflows/image-build-push.yaml
     secrets: inherit  # Inherit secrets from the calling workflow

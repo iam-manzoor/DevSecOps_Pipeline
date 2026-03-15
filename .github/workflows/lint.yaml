@@ -1,0 +1,23 @@
+# Lint the code using Maven's validate phase, which includes linting checks. 
+# This workflow can be called from other workflows to ensure code quality before proceeding 
+# with further steps like testing or deployment.
+name: Lint the code
+
+on: 
+    workflow_call:
+
+jobs:
+  Lint:
+    runs-on: Linux
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Java # Set up Java environment for building the project
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+
+      - name: Lint
+        run: mvn clean validate

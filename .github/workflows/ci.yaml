@@ -7,21 +7,21 @@ on:
 #       - main
 
 jobs: 
-  checkout:
+  build:
     uses: ./.github/workflows/Checkout.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
-  sonar:
-    needs: checkout
+  sonarscan:
+    needs: build
     uses: ./.github/workflows/sonar.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
   testing:
-    needs: sonar
+    needs: sonarscan
     uses: ./.github/workflows/unit_test.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
-  build-and-push:
+  image-build-and-push:
     needs: testing
     uses: ./.github/workflows/image-build-push.yaml
     secrets: inherit  # Inherit secrets from the calling workflow

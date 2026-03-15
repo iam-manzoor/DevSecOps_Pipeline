@@ -13,11 +13,11 @@ jobs:
     #   - name: MVN Package
     #     run: mvn clean package
 
-      - name: Setup Java # Set up Java environment for building the project
-        uses: actions/setup-java@v3
-        with:
-            distribution: 'adopt'
-            java-version: '17'
+      # - name: Setup Java # Set up Java environment for building the project
+      #   uses: actions/setup-java@v3
+      #   with:
+      #       distribution: 'adopt'
+      #       java-version: '17'
     
       - name: Run SonarQube analysis
         # uses: SonarSource/sonarqube-scan-action@v7.0.0

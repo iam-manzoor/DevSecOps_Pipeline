@@ -5,10 +5,10 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: Linux
     steps:
-      - name: checkout code
-        uses: actions/checkout@v6
+      # - name: checkout code
+      #   uses: actions/checkout@v6
 
       - name: Image Build
         run: |

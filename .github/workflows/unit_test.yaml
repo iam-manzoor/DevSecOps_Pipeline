@@ -5,11 +5,11 @@ on:
 
 jobs:
   testing:
-    runs-on: ubuntu-latest
+    runs-on: Linux
     #needs: checkout
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+      # - name: Checkout code
+      #   uses: actions/checkout@v6
 
       - name: Run unit tests # Run unit tests using Maven
         run: mvn test

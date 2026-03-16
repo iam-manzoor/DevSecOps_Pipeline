@@ -19,7 +19,7 @@ jobs:
     secrets: inherit  # Inherit secrets from the calling workflow
 
   build:
-    needs: testing
+    needs: lint
     uses: ./.github/workflows/Checkout.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 

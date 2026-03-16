@@ -18,17 +18,17 @@ jobs:
     uses: ./.github/workflows/lint.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
-  sonarscan:
-    needs: testing
-    uses: ./.github/workflows/sonar.yaml
-    secrets: inherit  # Inherit secrets from the calling workflow
-
   build:
-    needs: sonarscan
+    needs: testing
     uses: ./.github/workflows/Checkout.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
-  image-build-and-push:
+  sonarscan:
     needs: build
+    uses: ./.github/workflows/sonar.yaml
+    secrets: inherit  # Inherit secrets from the calling workflow
+
+  image-build-and-push:
+    needs: sonarscan
     uses: ./.github/workflows/image-build-push.yaml
     secrets: inherit  # Inherit secrets from the calling workflow

@@ -14,4 +14,4 @@ jobs:
     - name: Run Snyk test
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      run: snyk test  # Run the Snyk test command to check for vulnerabilities
+      run: snyk test --debug # Run the Snyk test command to check for vulnerabilities

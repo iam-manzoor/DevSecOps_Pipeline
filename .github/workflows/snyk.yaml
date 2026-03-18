@@ -1,0 +1,16 @@
+name: Snyk Security Scan
+
+on:
+    workflow_call:  # Reusable workflow that can be called from other workflows
+
+jobs:
+  snyk-scan:
+    runs-on: Linux
+    steps:
+    # - uses: actions/checkout@v4
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/node@master  # Use the relevant action for your project (e.g., /python, /maven)
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        command: test

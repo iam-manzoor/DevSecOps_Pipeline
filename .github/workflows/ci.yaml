@@ -23,6 +23,11 @@ jobs:
     uses: ./.github/workflows/Checkout.yaml
     secrets: inherit  # Inherit secrets from the calling workflow
 
+  snyk-scan:
+    needs: build
+    uses: ./.github/workflows/snyk.yaml
+    secrets: inherit  # Inherit secrets from the calling workflow
+
   sonarscan:
     needs: build
     uses: ./.github/workflows/sonar.yaml
